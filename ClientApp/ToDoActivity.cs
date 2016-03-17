@@ -10,6 +10,7 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using System.IO;
 using Android;
+using Gcm.Client;
 
 namespace SiteMonitor
 {
@@ -18,6 +19,26 @@ namespace SiteMonitor
                Theme = "@style/AppTheme")]
     public class ToDoActivity : Activity
     {
+        // Create a new instance field for this activity.
+        static ToDoActivity instance = new ToDoActivity();
+
+        // Return the current activity instance.
+        public static ToDoActivity CurrentActivity
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        // Return the Mobile Services client.
+        public MobileServiceClient CurrentClient
+        {
+            get
+            {
+                return client;
+            }
+        }
+
         //Mobile Service Client reference
         private MobileServiceClient client;
 
@@ -47,6 +68,16 @@ namespace SiteMonitor
             // Mobile Service URL
             client = new MobileServiceClient(applicationURL);
             await InitLocalStoreAsync();
+
+            // Set the current instance of TodoActivity.
+            instance = this;
+
+            // Make sure the GCM client is set up correctly.
+            GcmClient.CheckDevice(this);
+            GcmClient.CheckManifest(this);
+
+            // Register the app for push notifications.
+            GcmClient.Register(this, ToDoBroadcastReceiver.senderIDs);
 
             // Get the Mobile Service sync table instance to use
             toDoTable = client.GetSyncTable<ToDoItem>();
