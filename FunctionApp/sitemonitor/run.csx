@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-public static async Task<object> Run(HttpRequestMessage req, TraceWriter log, out T eventStore)//, out Notification pushNotification)
+public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)//, out T eventStore)//, out Notification pushNotification)
 {
     log.Verbose($"Webhook was triggered!");
 
