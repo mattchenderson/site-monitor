@@ -9,7 +9,7 @@ public static void Run(HttpRequestMessage req, TraceWriter log, out Event eventS
 {
     log.Verbose($"Webhook was triggered!");
 
-    string jsonContent = req.Content.ToString();
+    string jsonContent = req.Content.ReadAsStringAsync().Result;
     dynamic data = JsonConvert.DeserializeObject(jsonContent);
     
     dynamic alert = data.context; 
