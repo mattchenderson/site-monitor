@@ -7,7 +7,7 @@
       "webHookType": "genericJson"
     },
     {
-      "name": "eventStore",
+      "name": "todoItem",
       "type": "easyTable",
       "direction": "out",
       "tableName": "todoItem"
