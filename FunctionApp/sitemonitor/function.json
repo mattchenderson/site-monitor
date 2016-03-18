@@ -1,16 +1,27 @@
 {
-	"bindings": [
-		{
-			"webHookType": "genericJson",
-			"type": "httpTrigger",
-			"direction": "in",
-			"name": "req"
-		},
-		{
-			"type": "http",
-			"direction": "out",
-			"name": "res"
-		}
-	],
-	"disabled": false
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "webHookType": "genericJson"
+    },
+    {
+      "name": "eventStore",
+      "type": "easyTable",
+      "direction": "out",
+      "tableName": "todoItem",
+      "mobileAppUri": "<MOBILE_SERVICE_URL>",
+      "mobileAppKey": ""
+    },
+    {
+      "name": "pushNotification",
+      "type": "notificationhub",
+      "direction": "out",
+      "tagexpression": "alerts",
+      "notificationHubConnectionString":"%MyNotificationHub%",
+      "notificationHubName": "%MyHubName%"
+    }
+  ],
+  "disabled": false
 }

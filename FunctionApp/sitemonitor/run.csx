@@ -5,20 +5,17 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
+public static async Task<object> Run(HttpRequestMessage req, TraceWriter log, out T eventStore)//, out Notification pushNotification)
 {
     log.Verbose($"Webhook was triggered!");
 
     string jsonContent = await req.Content.ReadAsStringAsync();
     dynamic data = JsonConvert.DeserializeObject(jsonContent);
+    
+    dynamic alert = data.context; 
 
-    if (data.first == null || data.last == null) {
-        return req.CreateResponse(HttpStatusCode.BadRequest, new {
-            error = "Please pass first/last properties in the input object"
-        });
-    }
+    string message = string.Format( "{0} - Resource {1} experienced {2} errors over a {3} minute period", alert.timestamp, alert.resourceName, alert.condition.metricValue, alert.condition.windowSize);
+    log.Verbose(message);
 
-    return req.CreateResponse(HttpStatusCode.OK, new {
-        greeting = $"Hello {data.first} {data.last}!"
-    });
+    return Task.FromResult<object>(null);
 }
