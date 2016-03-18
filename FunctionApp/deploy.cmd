@@ -54,7 +54,7 @@ IF NOT DEFINED KUDU_SYNC_CMD (
 
 echo Handling Basic Web Site deployment.
 
-nuget restore "%DEPLOYMENT_SOURCE%\FunctionApp\sitemonitor\Project.json"
+rem nuget restore "%DEPLOYMENT_SOURCE%\FunctionApp\sitemonitor\Project.json"
 
 :: 1. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
