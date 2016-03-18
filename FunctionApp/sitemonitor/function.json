@@ -5,6 +5,12 @@
       "type": "httpTrigger",
       "direction": "in",
       "webHookType": "genericJson"
+    },
+    {
+      "name": "eventStore",
+      "type": "easyTable",
+      "direction": "out",
+      "tableName": "todoItem"
     }
   ],
   "disabled": false
