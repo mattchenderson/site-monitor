@@ -9,7 +9,7 @@ public static void Run(HttpRequestMessage req, TraceWriter log, out Event eventS
 {
     log.Verbose($"Webhook was triggered!");
 
-    string jsonContent = await req.Content.ReadAsStringAsync();
+    string jsonContent = req.Content.ToString();
     dynamic data = JsonConvert.DeserializeObject(jsonContent);
     
     dynamic alert = data.context; 
@@ -17,7 +17,7 @@ public static void Run(HttpRequestMessage req, TraceWriter log, out Event eventS
     string message = string.Format( "{0} - Resource {1} experienced {2} errors over a {3} minute period", alert.timestamp, alert.resourceName, alert.condition.metricValue, alert.condition.windowSize);
     log.Verbose(message);
     
-    eventStore = null;
+    eventStore = new Event();
 }
 
 public class Event {
