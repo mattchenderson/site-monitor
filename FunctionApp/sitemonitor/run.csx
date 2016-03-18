@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-public static void Run(HttpRequestMessage req, TraceWriter log, out TodoItem todoItem)//, out Notification pushNotification)
+public static void Run(HttpRequestMessage req, out TodoItem todoItem, TraceWriter log)//, out Notification pushNotification)
 {
     log.Verbose($"Webhook was triggered!");
 
@@ -19,7 +19,7 @@ public static void Run(HttpRequestMessage req, TraceWriter log, out TodoItem tod
     
     todoItem = new TodoItem()
     {
-        Id = "foo",
+        Id = Guid.NewGuid().ToString(),
         Text = message
     };
     

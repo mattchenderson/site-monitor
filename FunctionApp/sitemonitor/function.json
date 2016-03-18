@@ -9,8 +9,7 @@
     {
       "name": "todoItem",
       "type": "easyTable",
-      "direction": "out",
-      "tableName": "todoItem"
+      "direction": "out"
     }
   ],
   "disabled": false
