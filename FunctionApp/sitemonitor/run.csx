@@ -17,7 +17,10 @@ public static void Run(HttpRequestMessage req, TraceWriter log, out Event eventS
     string message = string.Format( "{0} - Resource {1} experienced {2} errors over a {3} minute period", alert.timestamp, alert.resourceName, alert.condition.metricValue, alert.condition.windowSize);
     log.Verbose(message);
     
-    eventStore = new Event();
+    eventStore = new Event()
+    {
+        Id = "foo"
+    };
 }
 
 public class Event {
