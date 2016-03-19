@@ -73,13 +73,13 @@ namespace MobileApp.Controllers
             try
             {
                 // Send the push notification and log the results.
-                var result = await hub.SendTemplateNotificationAsync(templateParams);
-                var result1 = await hub.SendGcmNativeNotificationAsync(androidNotificationPayload);
+                //var result = await hub.SendTemplateNotificationAsync(templateParams);
+                //var result1 = await hub.SendGcmNativeNotificationAsync(androidNotificationPayload);
                 var result2 = await hub.SendWindowsNativeNotificationAsync(windowsToastPayload);
 
                 // Write the success result to the logs.
-                config.Services.GetTraceWriter().Info(result.State.ToString());
-                config.Services.GetTraceWriter().Info(result1.State.ToString());
+                //config.Services.GetTraceWriter().Info(result.State.ToString());
+                //config.Services.GetTraceWriter().Info(result1.State.ToString());
                 config.Services.GetTraceWriter().Info(result2.State.ToString());
             }
             catch (System.Exception ex)
