@@ -1,0 +1,119 @@
+﻿<Page
+    x:Class="TryMobileApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TryMobileApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="NarrowState">
+                    <VisualState.Setters>
+                        <Setter Target="TitleTextBlock.(TextBlock.FontSize)" Value="32"/>
+                        <Setter Target="TextInput.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,8,8,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="quickStartTask.(QuickStartTask.ShowMinimal)" Value="True"/>
+                        <Setter Target="quickStartTaskQuery.(QuickStartTask.ShowMinimal)" Value="True"/>
+                        <Setter Target="ItemsGrid.(Grid.Row)" Value="2"/>
+                        <Setter Target="ItemsGrid.(Grid.Column)" Value="0"/>
+                        <Setter Target="ItemsGrid.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="ContentPanel.(Grid.ColumnSpan)" Value="2"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.Setters>
+                        <Setter Target="TitleTextBlock.(TextBlock.FontSize)" Value="45"/>
+                        <Setter Target="TextInput.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>72,8,8,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="quickStartTask.(QuickStartTask.ShowMinimal)" Value="False"/>
+                        <Setter Target="quickStartTaskQuery.(QuickStartTask.ShowMinimal)" Value="False"/>
+                        <Setter Target="ItemsGrid.(Grid.Row)" Value="1"/>
+                        <Setter Target="ItemsGrid.(Grid.Column)" Value="1"/>
+                        <Setter Target="ItemsGrid.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="ContentPanel.(Grid.ColumnSpan)" Value="1"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid x:Name="ContentGrid" Margin="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--TitleGrid contains the name of the application and page title-->
+            <Grid x:Name="TitleGrid" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Foreground="#0094ff" FontFamily="Segoe UI Light" Margin="0,0,0,6">MICROSOFT AZURE MOBILE SERVICES</TextBlock>
+                    <TextBlock x:Name="TitleTextBlock" Foreground="Gray" FontFamily="Segoe UI Light" FontSize="45" >TryMobileApp</TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <local:QuickStartTask x:Name="quickStartTask" Grid.ColumnSpan="2" Number="1" Title="Insert a TodoItem" 
+                                      Description="Enter some text below and click Save to insert a new todo item into your database" />
+                <TextBox x:Name="TextInput" Grid.Row="1" Margin="0,8,8,0" Height="24" Text="" VerticalAlignment="Top"/>
+                <Button x:Name="ButtonSave" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,8,8,8" Click="ButtonSave_Click" Width="60" IsEnabled="False" >Save</Button>
+            </Grid>
+
+            <Grid x:Name="ItemsGrid" Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <RelativePanel>
+                    <local:QuickStartTask x:Name="quickStartTaskQuery" Number="2" Title="Query and Update Data" 
+                                          Description="Click refresh below to load the unfinished TodoItems from your database. Use the checkbox to complete and update your TodoItems" 
+                                          />
+                    <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Refresh" Width="160" Margin="0,8,0,0"
+                            RelativePanel.Below="quickStartTaskQuery" RelativePanel.AlignHorizontalCenterWith="quickStartTaskQuery"/>
+                </RelativePanel>
+                <ListView Grid.Row="1" x:Name="ListItems">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox x:Name="CheckBoxComplete" 
+                                          IsChecked="{Binding Complete, Mode=TwoWay}" 
+                                          Checked="CheckBoxComplete_Checked" 
+                                          Content="{Binding Text}" 
+                                          Margin="10,5" 
+                                          VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Page>
