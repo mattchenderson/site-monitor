@@ -57,18 +57,30 @@ namespace MobileApp.Controllers
             NotificationHubClient hub = NotificationHubClient
             .CreateClientFromConnectionString(notificationHubConnection, notificationHubName);
 
+            // Android payload
+            var androidNotificationPayload = "{ \"data\" : {\"message\":\"" + item.Text + "\"}}";
+            // Define a WNS payload
+            var windowsToastPayload = @"<toast><visual><binding template=""ToastText01""><text id=""1"">"
+                                    + item.Text + @"</text></binding></visual></toast>";
             // Sending the message so that all template registrations that contain "messageParam"
             // will receive the notifications. This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
             templateParams["messageParam"] = item.Text;
 
+
+
+
             try
             {
                 // Send the push notification and log the results.
                 var result = await hub.SendTemplateNotificationAsync(templateParams);
+                var result1 = await hub.SendGcmNativeNotificationAsync(androidNotificationPayload);
+                var result2 = await hub.SendWindowsNativeNotificationAsync(windowsToastPayload);
 
                 // Write the success result to the logs.
                 config.Services.GetTraceWriter().Info(result.State.ToString());
+                config.Services.GetTraceWriter().Info(result1.State.ToString());
+                config.Services.GetTraceWriter().Info(result2.State.ToString());
             }
             catch (System.Exception ex)
             {
