@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-public static void Run(HttpRequestMessage req, out TodoItem todoItem, TraceWriter log)//, out Notification pushNotification)
+public static void Run(HttpRequestMessage req, out TodoItem todoItem, TraceWriter log)
 {
     log.Verbose($"Webhook was triggered!");
 
@@ -14,7 +14,7 @@ public static void Run(HttpRequestMessage req, out TodoItem todoItem, TraceWrite
     
     dynamic alert = data.context; 
 
-    string message = string.Format( "{0} - Resource {1} experienced {2} errors over a {3} minute period", alert.timestamp, alert.resourceName, alert.condition.metricValue, alert.condition.windowSize);
+    string message = "alert!";
     log.Verbose(message);
     
     todoItem = new TodoItem()
@@ -29,8 +29,4 @@ public static void Run(HttpRequestMessage req, out TodoItem todoItem, TraceWrite
 public class TodoItem {
     public string Id {get; set;}
     public string Text { get; set; }
-}
-
-public class Notification {
-    public string Message { get; set; }
 }
