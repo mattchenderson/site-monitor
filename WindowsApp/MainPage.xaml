@@ -13,12 +13,12 @@
                 <VisualState x:Name="NarrowState">
                     <VisualState.Setters>
                         <Setter Target="TitleTextBlock.(TextBlock.FontSize)" Value="32"/>
-                        <Setter Target="TextInput.(FrameworkElement.Margin)">
+                        <!--<Setter Target="TextInput.(FrameworkElement.Margin)">
                             <Setter.Value>
                                 <Thickness>0,8,8,0</Thickness>
                             </Setter.Value>
-                        </Setter>
-                        <Setter Target="quickStartTask.(QuickStartTask.ShowMinimal)" Value="True"/>
+                        </Setter>-->
+                        <!--<Setter Target="quickStartTask.(QuickStartTask.ShowMinimal)" Value="True"/>-->
                         <Setter Target="quickStartTaskQuery.(QuickStartTask.ShowMinimal)" Value="True"/>
                         <Setter Target="ItemsGrid.(Grid.Row)" Value="2"/>
                         <Setter Target="ItemsGrid.(Grid.Column)" Value="0"/>
@@ -32,12 +32,12 @@
                 <VisualState x:Name="WideState">
                     <VisualState.Setters>
                         <Setter Target="TitleTextBlock.(TextBlock.FontSize)" Value="45"/>
-                        <Setter Target="TextInput.(FrameworkElement.Margin)">
+                        <!--<Setter Target="TextInput.(FrameworkElement.Margin)">
                             <Setter.Value>
                                 <Thickness>72,8,8,0</Thickness>
                             </Setter.Value>
-                        </Setter>
-                        <Setter Target="quickStartTask.(QuickStartTask.ShowMinimal)" Value="False"/>
+                        </Setter>-->
+                        <!--<Setter Target="quickStartTask.(QuickStartTask.ShowMinimal)" Value="False"/>-->
                         <Setter Target="quickStartTaskQuery.(QuickStartTask.ShowMinimal)" Value="False"/>
                         <Setter Target="ItemsGrid.(Grid.Row)" Value="1"/>
                         <Setter Target="ItemsGrid.(Grid.Column)" Value="1"/>
@@ -65,8 +65,8 @@
             <!--TitleGrid contains the name of the application and page title-->
             <Grid x:Name="TitleGrid" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,16">
                 <StackPanel>
-                    <TextBlock Foreground="#0094ff" FontFamily="Segoe UI Light" Margin="0,0,0,6">MICROSOFT AZURE MOBILE SERVICES</TextBlock>
-                    <TextBlock x:Name="TitleTextBlock" Foreground="Gray" FontFamily="Segoe UI Light" FontSize="45" >TryMobileApp</TextBlock>
+                    <TextBlock Foreground="#0094ff" FontFamily="Segoe UI Light" Margin="0,0,0,6">AZURE FUNCTIONS DEMO</TextBlock>
+                    <TextBlock x:Name="TitleTextBlock" Foreground="Gray" FontFamily="Segoe UI Light" FontSize="45" >Site Monitor</TextBlock>
                 </StackPanel>
             </Grid>
 
@@ -80,10 +80,10 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <local:QuickStartTask x:Name="quickStartTask" Grid.ColumnSpan="2" Number="1" Title="Insert a TodoItem" 
+                <!--<local:QuickStartTask x:Name="quickStartTask" Grid.ColumnSpan="2" Number="1" Title="Insert a TodoItem" 
                                       Description="Enter some text below and click Save to insert a new todo item into your database" />
                 <TextBox x:Name="TextInput" Grid.Row="1" Margin="0,8,8,0" Height="24" Text="" VerticalAlignment="Top"/>
-                <Button x:Name="ButtonSave" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,8,8,8" Click="ButtonSave_Click" Width="60" IsEnabled="False" >Save</Button>
+                <Button x:Name="ButtonSave" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,8,8,8" Click="ButtonSave_Click" Width="60" IsEnabled="False" >Save</Button>-->
             </Grid>
 
             <Grid x:Name="ItemsGrid" Grid.Row="1" Grid.Column="1">
@@ -93,7 +93,7 @@
                 </Grid.RowDefinitions>
                 <RelativePanel>
                     <local:QuickStartTask x:Name="quickStartTaskQuery" Number="2" Title="Query and Update Data" 
-                                          Description="Click refresh below to load the unfinished TodoItems from your database. Use the checkbox to complete and update your TodoItems" 
+                                          Description="Click refresh below to load the list of alerts from your database." 
                                           />
                     <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Refresh" Width="160" Margin="0,8,0,0"
                             RelativePanel.Below="quickStartTaskQuery" RelativePanel.AlignHorizontalCenterWith="quickStartTaskQuery"/>
@@ -102,12 +102,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox x:Name="CheckBoxComplete" 
+                                <!--<CheckBox x:Name="CheckBoxComplete" 
                                           IsChecked="{Binding Complete, Mode=TwoWay}" 
                                           Checked="CheckBoxComplete_Checked" 
                                           Content="{Binding Text}" 
                                           Margin="10,5" 
-                                          VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center"/>-->
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

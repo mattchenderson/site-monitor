@@ -70,7 +70,7 @@ namespace TryMobileApp
             else
             {
                 ListItems.ItemsSource = items;
-                this.ButtonSave.IsEnabled = true;
+                //this.ButtonSave.IsEnabled = true;
             }
         }
 
@@ -97,8 +97,8 @@ namespace TryMobileApp
 
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            var todoItem = new TodoItem { Text = TextInput.Text };
-            await InsertTodoItem(todoItem);
+            //var todoItem = new TodoItem { Text = TextInput.Text };
+            //await InsertTodoItem(todoItem);
         }
 
         private async void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
