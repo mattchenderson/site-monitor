@@ -102,12 +102,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <!--<CheckBox x:Name="CheckBoxComplete" 
+                                <CheckBox x:Name="CheckBoxComplete" 
                                           IsChecked="{Binding Complete, Mode=TwoWay}" 
                                           Checked="CheckBoxComplete_Checked" 
                                           Content="{Binding Text}" 
                                           Margin="10,5" 
-                                          VerticalAlignment="Center"/>-->
+                                          VerticalAlignment="Center"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

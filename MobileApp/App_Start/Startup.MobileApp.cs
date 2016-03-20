@@ -50,8 +50,8 @@ namespace MobileApp
         {
             List<TodoItem> todoItems = new List<TodoItem>
             {
-                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "First item" },
-                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "Second item" }
+                //new TodoItem { Id = Guid.NewGuid().ToString(), Text = "First item" },
+                //new TodoItem { Id = Guid.NewGuid().ToString(), Text = "Second item" }
             };
 
             foreach (TodoItem todoItem in todoItems)
