@@ -14,7 +14,8 @@ public static void Run(HttpRequestMessage req, out TodoItem todoItem, TraceWrite
     
     dynamic alert = data.context; 
 
-    string message = "alert!";
+    string message = string.Format( "{0} - Resource {1} experienced {2} errors over a {3} minute period", alert.timestamp, alert.resourceName, alert.condition.metricValue, alert.condition.windowSize);
+    
     log.Verbose(message);
     
     todoItem = new TodoItem()
