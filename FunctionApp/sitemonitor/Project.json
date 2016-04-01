@@ -2,6 +2,7 @@
   "frameworks": {
     "net46":{
       "dependencies": {
+          "Humanizer" : "2.0.1"
       }
     }
   }
